@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+</head>
+<body>
+
+<h1>Spring Boot Contact</h1>
+<form method="POST" th:object="${message}">
+    First Name:
+    <input type="text" th:field="*{firstName}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('firstName')}"
+    th:errors="*{firstName}">First Name Error</span>
+    <br/>
+
+    Last Name:
+    <input type="text" th:field="*{lastName}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('lastName')}"
+          th:errors="*{lastName}">Last Name Error</span>
+    <br/>
+
+    Phone:
+    <input type="text" th:field="*{phoneNumber}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('phoneNumber')}"
+          th:errors="*{phoneNumber}">phone number Error</span>
+    <br/>
+
+    Email:
+    <input type="text" th:field="*{email}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}">email Error</span>
+    <br/>
+
+    <button>Submit Your Taco</button>
+</form>
+
+<ul th:object="${contact}">
+    <li th:each="message : *{messages}">
+        <span th:text="${message.firstName}">firstName</span>
+        <span th:text="${message.lastName}">lastName</span>
+        <span th:text="${message.phoneNumber}">phoneNumber</span>
+        <span th:text="${message.email}">email</span>
+    </li>
+</ul>
+
+</body>
+</html>
