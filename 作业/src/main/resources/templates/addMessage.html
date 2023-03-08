@@ -8,7 +8,7 @@
 <body>
 
 <h1>Spring Boot Contact</h1>
-<form method="POST" th:object="${message}"> <--!$用于访问模板变量，*用于绑定属性并赋值，#符号通常用于引用内置的工具对象和方法-->
+<form method="POST" th:object="${message}"> <!--$用于访问模板变量，*用于绑定属性并赋值，#符号通常用于引用内置的工具对象和方法-->
     First Name:
     <input type="text" th:field="*{firstName}">
     <span class="validationError"

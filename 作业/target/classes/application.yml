@@ -1,4 +1,0 @@
-spring:
-  datasource:
-    name: ContactCloud
-    generate-unique-name: false
