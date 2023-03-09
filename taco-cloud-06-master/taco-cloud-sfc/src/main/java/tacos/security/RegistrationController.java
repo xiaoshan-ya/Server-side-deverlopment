@@ -9,7 +9,7 @@ import tacos.data.UserRepository;
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
-  
+  //DAO层的方法
   private UserRepository userRepo;
   private PasswordEncoder passwordEncoder;
 
@@ -26,7 +26,7 @@ public class RegistrationController {
   
   @PostMapping
   public String processRegistration(RegistrationForm form) {
-    userRepo.save(form.toUser(passwordEncoder));
+    userRepo.save(form.toUser(passwordEncoder)); //将用户信息存入数据库，toUser是加密操作
     return "redirect:/login";
   }
 

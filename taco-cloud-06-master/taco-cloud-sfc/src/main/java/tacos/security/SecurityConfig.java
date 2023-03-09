@@ -23,12 +23,12 @@ import tacos.data.UserRepository;
 public class SecurityConfig {
   
   @Bean
-  public PasswordEncoder passwordEncoder() {
+  public PasswordEncoder passwordEncoder() { //密码加密
     return new BCryptPasswordEncoder();
   }
   
   @Bean
-  public UserDetailsService userDetailsService(UserRepository userRepo) {
+  public UserDetailsService userDetailsService(UserRepository userRepo) { //得到用户信息，会被加入spring上下文，同时自动做登录验证
     return username -> {
       User user = userRepo.findByUsername(username);
       if (user != null) {
@@ -40,7 +40,7 @@ public class SecurityConfig {
   }
   
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { //过滤器，鉴权、认证的工作，对不同的URL进行不同的权限控制
     return http
       .authorizeRequests()
         .mvcMatchers("/design", "/orders").hasRole("USER")

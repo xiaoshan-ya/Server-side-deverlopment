@@ -36,7 +36,7 @@ public class User implements UserDetails {
   private final String phoneNumber;
   
   @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
+  public Collection<? extends GrantedAuthority> getAuthorities() { //设置权限，角色
     return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
   }
 

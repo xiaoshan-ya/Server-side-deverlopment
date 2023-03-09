@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import tacos.data.OrderRepository;
 
 @Service
-public class OrderAdminService {
+public class OrderAdminService { //业务层
 
   private OrderRepository orderRepository;
 
