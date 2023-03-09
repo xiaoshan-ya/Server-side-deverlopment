@@ -14,7 +14,7 @@ public class OrderAdminService { //业务层
     this.orderRepository = orderRepository;
   }
 
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ADMIN')") //确定鉴权，且当前用户权限为ADMIT
   public void deleteAllOrders() {
     orderRepository.deleteAll();
   }
