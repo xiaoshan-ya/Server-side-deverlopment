@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private UserDetailsService userDetailsService;
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(HttpSecurity http) throws Exception { //针对URL统一配置权限
     http
       .authorizeRequests()
         .antMatchers("/design", "/orders").access("hasRole('USER')")

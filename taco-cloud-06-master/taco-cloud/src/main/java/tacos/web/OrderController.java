@@ -1,4 +1,5 @@
 package tacos.web;
+
 import javax.validation.Valid;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,49 +21,49 @@ import tacos.data.OrderRepository;
 @SessionAttributes("order")
 public class OrderController {
 
-  private OrderRepository orderRepo;
+	private OrderRepository orderRepo;
 
-  public OrderController(OrderRepository orderRepo) {
-    this.orderRepo = orderRepo;
-  }
+	public OrderController(OrderRepository orderRepo) {
+		this.orderRepo = orderRepo;
+	}
 
-  @GetMapping("/current")
-  public String orderForm(@AuthenticationPrincipal User user,
-      @ModelAttribute TacoOrder order) {
-    if (order.getDeliveryName() == null) {
-      order.setDeliveryName(user.getFullname());
-    }
-    if (order.getDeliveryStreet() == null) {
-      order.setDeliveryStreet(user.getStreet());
-    }
-    if (order.getDeliveryCity() == null) {
-      order.setDeliveryCity(user.getCity());
-    }
-    if (order.getDeliveryState() == null) {
-      order.setDeliveryState(user.getState());
-    }
-    if (order.getDeliveryZip() == null) {
-      order.setDeliveryZip(user.getZip());
-    }
+	@GetMapping("/current")
+	public String orderForm(@AuthenticationPrincipal User user,
+							@ModelAttribute TacoOrder order) {
+		if (order.getDeliveryName() == null) {
+			order.setDeliveryName(user.getFullname());
+		}
+		if (order.getDeliveryStreet() == null) {
+			order.setDeliveryStreet(user.getStreet());
+		}
+		if (order.getDeliveryCity() == null) {
+			order.setDeliveryCity(user.getCity());
+		}
+		if (order.getDeliveryState() == null) {
+			order.setDeliveryState(user.getState());
+		}
+		if (order.getDeliveryZip() == null) {
+			order.setDeliveryZip(user.getZip());
+		}
 
-    return "orderForm";
-  }
+		return "orderForm";
+	}
 
-  @PostMapping
-  public String processOrder(@Valid TacoOrder order, Errors errors,
-      SessionStatus sessionStatus,
-      @AuthenticationPrincipal User user) {
+	@PostMapping
+	public String processOrder(@Valid TacoOrder order, Errors errors,
+							   SessionStatus sessionStatus,
+							   @AuthenticationPrincipal User user/*用于进行鉴权认证，获得当前登录的用户*/) {
 
-    if (errors.hasErrors()) {
-      return "orderForm";
-    }
+		if (errors.hasErrors()) {
+			return "orderForm";
+		}
 
-    order.setUser(user);
+		order.setUser(user);
 
-    orderRepo.save(order);
-    sessionStatus.setComplete();
+		orderRepo.save(order);
+		sessionStatus.setComplete();
 
-    return "redirect:/";
-  }
+		return "redirect:/";
+	}
 
 }

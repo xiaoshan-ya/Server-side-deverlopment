@@ -33,79 +33,79 @@ import tacos.data.UserRepository;
 @Slf4j
 public class DesignTacoController {
 
-  private final IngredientRepository ingredientRepo;
+	private final IngredientRepository ingredientRepo;
 
-  private TacoRepository tacoRepo;
+	private TacoRepository tacoRepo;
 
-  private UserRepository userRepo;
+	private UserRepository userRepo;
 
-  @Autowired
-  public DesignTacoController(
-        IngredientRepository ingredientRepo,
-        TacoRepository tacoRepo,
-        UserRepository userRepo) {
-    this.ingredientRepo = ingredientRepo;
-    this.tacoRepo = tacoRepo;
-    this.userRepo = userRepo;
-  }
+	@Autowired
+	public DesignTacoController(
+			IngredientRepository ingredientRepo,
+			TacoRepository tacoRepo,
+			UserRepository userRepo) {
+		this.ingredientRepo = ingredientRepo;
+		this.tacoRepo = tacoRepo;
+		this.userRepo = userRepo;
+	}
 
-  @ModelAttribute
-  public void addIngredientsToModel(Model model) {
-    List<Ingredient> ingredients = new ArrayList<>();
-    ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+	@ModelAttribute
+	public void addIngredientsToModel(Model model) {
+		List<Ingredient> ingredients = new ArrayList<>();
+		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
-    Type[] types = Ingredient.Type.values();
-    for (Type type : types) {
-      model.addAttribute(type.toString().toLowerCase(),
-          filterByType(ingredients, type));
-    }
-  }
+		Type[] types = Ingredient.Type.values();
+		for (Type type : types) {
+			model.addAttribute(type.toString().toLowerCase(),
+					filterByType(ingredients, type));
+		}
+	}
 
-  @ModelAttribute(name = "order")
-  public TacoOrder order() {
-    return new TacoOrder();
-  }
+	@ModelAttribute(name = "order")
+	public TacoOrder order() {
+		return new TacoOrder();
+	}
 
-  @ModelAttribute(name = "taco")
-  public Taco taco() {
-    return new Taco();
-  }
+	@ModelAttribute(name = "taco")
+	public Taco taco() {
+		return new Taco();
+	}
 
-  @ModelAttribute(name = "user")
-  public User user(Principal principal) {
-	    String username = principal.getName();
-	    User user = userRepo.findByUsername(username);
-	    return user;
-  }
+	@ModelAttribute(name = "user")
+	public User user(Principal principal) { //用于进行鉴权认证，获得当前登录的用户
+		String username = principal.getName();
+		User user = userRepo.findByUsername(username);
+		return user;
+	}
 
-  @GetMapping
-  public String showDesignForm() {
-    return "design";
-  }
+	@GetMapping
+	public String showDesignForm() {
+		return "design";
+	}
 
-  @PostMapping
-  public String processTaco(
-      @Valid Taco taco, Errors errors,
-      @ModelAttribute TacoOrder order) {
+	@PostMapping
+	public String processTaco(
+			@Valid Taco taco, Errors errors,
+			@ModelAttribute TacoOrder order) {
 
-    log.info("   --- Saving taco");
+		log.info("   --- Saving taco");
 
-    if (errors.hasErrors()) {
-      return "design";
-    }
+		if (errors.hasErrors()) {
+			return "design";
+		}
 
-    Taco saved = tacoRepo.save(taco);
-    order.addTaco(saved);
+		Taco saved = tacoRepo.save(taco);
+		order.addTaco(saved);
 
-    return "redirect:/orders/current";
-  }
+		return "redirect:/orders/current";
+	}
 
-  private List<Ingredient> filterByType(
-      List<Ingredient> ingredients, Type type) {
-    return ingredients
-              .stream()
-              .filter(x -> x.getType().equals(type))
-              .collect(Collectors.toList());
-  }
+	private List<Ingredient> filterByType(
+			List<Ingredient> ingredients, Type type) {
+		return ingredients
+				.stream()
+				.filter(x -> x.getType().equals(type))
+				.collect(Collectors.toList());
+	}
 
 }
