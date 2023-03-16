@@ -1,0 +1,22 @@
+COMMON: &common
+  # app设置
+  DEBUG: False
+  TESTING: False
+  THREADED: False
+  SECRET_KEY: insecure
+  # 日志配置文件路径
+  LOGGING_CONFIG_PATH: ./config/logging.yaml
+
+DEVELOPMENT: &development
+  <<: *common
+  DEBUG: True
+  ENV:  dev
+TESTING: &testing
+  <<: *common
+  ENV: test
+  TESTING: True
+
+PRODUCTION: &production
+  <<: *common
+  ENV: prod
+  SECRET_KEY: shouldbereallysecureatsomepoint

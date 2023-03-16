@@ -1,0 +1,61 @@
+version: '3.6'
+services:
+  fluentd:
+    build:
+      context: ./fluentd
+    environment:
+      - ES_HOST=elasticsearch
+      - ES_PORT=9200
+    ports:
+      - "24224:24224"
+    depends_on:
+      - elasticsearch
+
+  flask:
+    build:
+      context: ./container
+    ports:
+      - "8090:80"
+    # container_name: myflask
+    # image: myflask:latest
+    # links:
+    #   - fluentd:fluentd
+    depends_on:
+      - fluentd
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+        tag: docker.flask
+
+#  tutorial3:
+#    image: tutorial3:v1
+#    ports:
+#      - "8081:80"
+#    links:
+#      - fluentd
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: localhost:24224
+#        tag: docker.django
+
+  elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+      environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      ports:
+        - "9200:9200"
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
