@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spittr
+spec:
+  selector:
+    matchLabels:
+      app: spittr
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spittr
+    spec:
+      containers:
+        - name: spittr
+          image: spittr:1.0-SNAPSHOT
+          ports:
+            - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spittr
+spec:
+  selector:
+    app: spittr
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spittr-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: www.spittr.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: spittr
+                port:
+                  number: 8080

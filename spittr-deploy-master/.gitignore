@@ -1,0 +1,36 @@
+# Java class files
+*.class
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+.DS_Store/
+/target
+/report
+/assets
+*.log
+
+/target
+/target/
+**/target/
+
+/__pycache__
+/__pycache__/
+**/__pycache__/
+
+/.pytest_cache
+/.pytest_cache/
+**/.pytest_cache/
+
+.DS_Store
+my_allure_results
+report.html
+*.log
