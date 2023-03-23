@@ -14,7 +14,7 @@ import spittr.data.SpittleRepository;
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@RestController //每个微服务控制器一定要添加该注解
 @RequestMapping("/spittles")
 public class SpittleApiController {
 
@@ -74,8 +74,8 @@ public class SpittleApiController {
 //    return saved;
 //  }
 
-    @ExceptionHandler(SpittleNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(SpittleNotFoundException.class) //处理抛出的某个异常
+    @ResponseStatus(HttpStatus.NOT_FOUND) //指定一个状态码并返回到客户端、
     public @ResponseBody
     Error spittleNotFound(SpittleNotFoundException e) {
         long spittleId = e.getSpittleId();
