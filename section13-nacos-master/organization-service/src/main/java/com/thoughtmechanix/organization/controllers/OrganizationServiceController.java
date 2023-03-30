@@ -27,7 +27,8 @@ public class OrganizationServiceController {
 
         try {
             InetAddress address = InetAddress.getLocalHost();
-            System.out.println("============================  "+address.getHostAddress());
+            System.out.println("============================  "+address.getHostAddress()); //访问到的organizationservice的地址
+            //打印在K8S/Pods/licensingservice中的日志中
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

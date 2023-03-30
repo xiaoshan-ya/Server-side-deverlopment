@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient //向nacos登记，注册自己，为了可以调用organizationservice得到相应的地址
 //@EnableFeignClients
 public class Application {
     public static void main(String[] args) {

@@ -37,9 +37,9 @@ public class LicenseServiceController {
     }
 
     @RequestMapping(value="/{licenseId}/{clientType}",method = RequestMethod.GET)
-    public License getLicenseWithClient( @PathVariable("organizationId") String organizationId,
+    public License getLicenseWithClient( @PathVariable("organizationId") String organizationId, // 获得organizationservice中的数据库地址
                                           @PathVariable("licenseId") String licenseId,
-                                          @PathVariable("clientType") String clientType) {
+                                          @PathVariable("clientType") String clientType ) { // 区分不同调用的方式
 
         return licenseService.getLicense(organizationId,licenseId, clientType);
     }

@@ -10,11 +10,11 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class OrganizationRestTemplateClient {
     @Autowired
-    RestTemplate restTemplate;
+    RestTemplate restTemplate; //注入进来的对象，对象在Application-27行创建
 
     public Organization getOrganization(String organizationId){
         ResponseEntity<Organization> restExchange =
-                restTemplate.exchange(
+                restTemplate.exchange( //对服务进行访问，因为已经设置了loadbalanced注解，实现负载均衡
                         "http://organizationservice/v1/organizations/{organizationId}",
                         HttpMethod.GET,
                         null, Organization.class, organizationId);

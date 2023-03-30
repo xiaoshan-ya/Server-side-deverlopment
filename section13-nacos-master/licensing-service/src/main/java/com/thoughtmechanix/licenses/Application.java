@@ -17,12 +17,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient //向nacos登记，注册自己，为了可以调用organizationservice得到相应的地址
 @EnableFeignClients
 //@LoadBalancerClient(name = "organizationservice", configuration = Application.class)
 public class Application {
 
-    @LoadBalanced
+    @LoadBalanced //实现负载均衡
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
