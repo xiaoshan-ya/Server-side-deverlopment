@@ -1,28 +1,26 @@
-2023-03-28 20:46:55,120 WARN naming.distro config will be removed, please use core.protocol.distro replace.
+2023-03-29 16:46:41,461 WARN naming.distro config will be removed, please use core.protocol.distro replace.
 
-2023-03-28 20:46:55,120 WARN Using naming.distro config to replace core.distro config
+2023-03-29 16:46:41,461 WARN Using naming.distro config to replace core.distro config
 
-2023-03-28 20:46:55,588 INFO open empty service auto clean job, initialDelay : 50000 ms, period : 30000 ms
+2023-03-29 16:46:41,767 INFO open empty service auto clean job, initialDelay : 50000 ms, period : 30000 ms
 
-2023-03-28 20:46:55,591 INFO listen for service meta change
+2023-03-29 16:46:41,769 INFO listen for service meta change
 
-2023-03-28 20:46:55,608 INFO upgrade.state file is not exist
+2023-03-29 16:46:44,479 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.CmdbSelectorContextBuilder) contextType(CMDB) successfully.
 
-2023-03-28 20:47:00,187 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.CmdbSelectorContextBuilder) contextType(CMDB) successfully.
+2023-03-29 16:46:44,479 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.NoneSelectorContextBuilder) contextType(NONE) successfully.
 
-2023-03-28 20:47:00,187 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.NoneSelectorContextBuilder) contextType(NONE) successfully.
+2023-03-29 16:46:44,481 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.LabelSelector) type(label) contextType(CMDB) successfully.
 
-2023-03-28 20:47:00,189 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.LabelSelector) type(label) contextType(CMDB) successfully.
+2023-03-29 16:46:44,481 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.NoneSelector) type(none) contextType(NONE) successfully.
 
-2023-03-28 20:47:00,189 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.NoneSelector) type(none) contextType(NONE) successfully.
+2023-03-29 16:46:46,003 INFO Load instance extension handler []
 
-2023-03-28 20:47:03,391 INFO Load instance extension handler []
+2023-03-29 16:53:05,517 WARN [NamingServerHttpClientManager] Start destroying HTTP-Client
 
-2023-03-28 21:39:52,375 WARN [NamingServerHttpClientManager] Start destroying HTTP-Client
+2023-03-29 16:53:05,561 WARN [NamingServerHttpClientManager] Destruction of the end
 
-2023-03-28 21:39:52,532 WARN [NamingServerHttpClientManager] Destruction of the end
-
-2023-03-28 21:39:53,421 ERROR [HEALTH-CHECK-V2] error while processing NIO task
+2023-03-29 16:53:06,463 ERROR [HEALTH-CHECK-V2] error while processing NIO task
 
 java.lang.InterruptedException: null
 	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
@@ -35,7 +33,7 @@ java.lang.InterruptedException: null
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at java.lang.Thread.run(Thread.java:750)
-2023-03-28 21:39:53,421 ERROR [HEALTH-CHECK] error while processing NIO task
+2023-03-29 16:53:06,463 ERROR [HEALTH-CHECK] error while processing NIO task
 
 java.lang.InterruptedException: null
 	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)

@@ -1,0 +1,52 @@
+2023-03-28 20:47:00,370 INFO Initializes the Raft protocol, raft-config info : {}
+
+2023-03-28 20:47:01,196 INFO ========= The raft protocol is starting... =========
+
+2023-03-28 20:47:01,338 INFO ========= The raft protocol start finished... =========
+
+2023-03-28 20:47:01,419 INFO create raft group : naming_persistent_service_v2
+
+2023-03-28 20:47:02,251 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service_v2', leader='f04ca6677ef6:7848', term=1, raftClusterInfo=[f04ca6677ef6:7848]}
+
+2023-03-28 20:47:02,275 INFO create raft group : naming_instance_metadata
+
+2023-03-28 20:47:02,485 INFO create raft group : naming_service_metadata
+
+2023-03-28 20:47:02,485 INFO This Raft event changes : RaftEvent{groupId='naming_instance_metadata', leader='f04ca6677ef6:7848', term=1, raftClusterInfo=[f04ca6677ef6:7848]}
+
+2023-03-28 20:47:02,740 INFO This Raft event changes : RaftEvent{groupId='naming_service_metadata', leader='f04ca6677ef6:7848', term=1, raftClusterInfo=[f04ca6677ef6:7848]}
+
+2023-03-28 20:47:03,692 ERROR Failed to join the cluster, retry...
+
+java.lang.IllegalStateException: Fail to get leader of group naming_instance_metadata
+	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:631)
+	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:524)
+	at com.alibaba.nacos.core.distributed.raft.JRaftServer.registerSelfToCluster(JRaftServer.java:361)
+	at com.alibaba.nacos.core.distributed.raft.JRaftServer.lambda$createMultiRaftGroup$0(JRaftServer.java:272)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-03-28 20:47:03,692 ERROR Failed to join the cluster, retry...
+
+java.lang.IllegalStateException: Fail to get leader of group naming_persistent_service_v2
+	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:631)
+	at com.alipay.sofa.jraft.core.CliServiceImpl.getPeers(CliServiceImpl.java:524)
+	at com.alibaba.nacos.core.distributed.raft.JRaftServer.registerSelfToCluster(JRaftServer.java:361)
+	at com.alibaba.nacos.core.distributed.raft.JRaftServer.lambda$createMultiRaftGroup$0(JRaftServer.java:272)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+2023-03-28 21:39:52,621 INFO shutdown jraft server
+
+2023-03-28 21:39:52,623 INFO ========= The raft protocol is starting to close =========
+
+2023-03-28 21:39:52,766 INFO ========= The raft protocol has been closed =========
+
