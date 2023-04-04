@@ -28,6 +28,7 @@ public class Application {
         return new RestTemplate();
     }
 
+    //实现负载均衡的策略，轮询和随机
 //    @Bean
 //    ReactorLoadBalancer<ServiceInstance> roundLoadBalancer(Environment environment,
 //                                                           LoadBalancerClientFactory loadBalancerClientFactory) {

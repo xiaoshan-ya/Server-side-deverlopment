@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient("organizationservice") //一个FeignClient服务
 public interface OrganizationFeignClient {
-    @RequestMapping(
+    @RequestMapping( //配置当前服务所需要的信息
             method= RequestMethod.GET,
             value="/v1/organizations/{organizationId}",
             consumes="application/json")
